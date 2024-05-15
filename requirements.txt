@@ -1,0 +1,24 @@
+pokebase
+
+//
+
+TYPESCHART = {'normal' : [0, 2, 1],
+              'fighting' : [5, 5, 1],
+              'flying' : [3, 3, 0],
+              'poison' : [2, 4, 1],
+              'ground' : [5, 2, 1],
+              'rock' : [4, 3, 0],
+              'bug' : [3, 7, 0],
+              'ghost' : [2, 1, 1],
+              'steel' : [3, 3, 0],
+              'fire' : [4, 4, 0],
+              'water' : [3, 3, 0],
+              'grass' : [3, 7, 0],
+              'electric' : [2, 3, 0],
+              'psychic' : [2, 2, 0],
+              'ice' : [4, 4, 0],
+              'dragon' : [1, 1, 1],
+              'dark' : [2, 3, 0],
+              'fairy' : [3, 3, 0],}
+
+//
