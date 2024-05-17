@@ -83,7 +83,7 @@ def button_click(element):
     button_result.set(element)
 
 def start_game_gui():
-    output.pack(anchor=tk.NW)  # Pack the output label in the top-left corner
+    output.pack(anchor=tk.CENTER)  # Pack the output label in the top-left corner
     start_game_button.config(state="disabled")
     num_of_rounds = get_num_of_rounds()
     if num_of_rounds is not None:
