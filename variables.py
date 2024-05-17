@@ -1,4 +1,21 @@
-TYPES = ['normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'fire', 'water', 'grass', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy']
+TYPES = ['Normal', 
+         'Fighting', 
+         'Flying', 
+         'Poison', 
+         'Ground', 
+         'Rock', 
+         'Bug', 
+         'Ghost', 
+         'Steel', 
+         'Fire', 
+         'Water', 
+         'Grass', 
+         'Electric', 
+         'Psychic', 
+         'Ice', 
+         'Dragon', 
+         'Dark', 
+         'Fairy']
 
 WEAKNESSCHART = [
     [0, 2, 1],  # Normal
@@ -38,3 +55,5 @@ TYPECOLORS = ['#A8A77A', # normal
               '#6F35FC', # dragon
               '#705746', # dark
               '#D685AD'] # fairy
+
+FONT = "Fixedsys", 20

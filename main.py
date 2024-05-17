@@ -3,10 +3,11 @@ import random
 import tkinter as tk
 from variables import *
 
-font = "Fixedsys", 20
+lower = lambda s: s[:1].lower() + s[1:] if s else ''
 
-# Get multiplyers for types
 def type_multiplier(attack: str, defense: str) -> float:
+    attack = lower(attack)
+    defense = lower(defense)
     atk_type = pb.type_(attack)
     if defense in [t.name for t in atk_type.damage_relations.no_damage_to]:
         return 0.0
@@ -17,13 +18,11 @@ def type_multiplier(attack: str, defense: str) -> float:
     else:
         return 1.0
     
-# Generate random numbers
 def get_random(x: int,y: int) -> int:
     return random.randint(x, y)
 
 def start_game():
     global button_result
-    # Get the type to ask for multipliers and apply special modifiers depending on the type selected 
     z = get_random(0, 17)
     type_ = TYPES[z]
     x = 2 if type_ in ["ghost", "electric", "fighting", "poison", "ground", "psychic", "dragon"] else 1
@@ -53,22 +52,18 @@ def start_game():
 
     output.config(text=out_message, anchor=tk.CENTER)
     
-    
     button_result= tk.StringVar()
-# Prompt for Answers 
+
     for n in range(WEAKNESSCHART[z][y]):
         button_result.set("")
         window.wait_variable(button_result)
         answer = button_result.get()
-        
         if type_multiplier(type_, answer) == i:
             score += 1
     message = '\n'
     return message, score, answer_count
 
-
-# Initiate game
-def game(number_of_rounds):    
+def game(number_of_rounds: int):    
     max_score = 0
     total_score = 0
 
@@ -76,19 +71,20 @@ def game(number_of_rounds):
         message, score, answer_count = start_game()
         total_score += score
         max_score += answer_count
+        
     game_finished_text = f"you scored {total_score} out of {max_score} Points\nYou got {(total_score  / max_score) * 100:.0f}% correct answers"
     output.config(text=game_finished_text, anchor=tk.CENTER)
 
-def button_click(element):
+def button_click(element: str):
     button_result.set(element)
 
 def start_game_gui():
-    output.pack(anchor=tk.CENTER)  # Pack the output label in the Center corner
+    output.pack(anchor=tk.CENTER)  
     start_game_button.config(state="disabled")
     num_of_rounds = get_num_of_rounds()
+    
     if num_of_rounds is not None:
         create_type_button(TYPES)
-        
         game(num_of_rounds)
 
 def get_num_of_rounds():
@@ -98,27 +94,25 @@ def get_num_of_rounds():
     except ValueError:
         return None
 
-def create_type_button(x):
-    # Calculate number of rows needed
+def create_type_button(x: str):
+    
     num_rows = (len(x) + 5) // 6
 
     for row in range(num_rows):
-        # Create a frame for each row of buttons
+        
         frame = tk.Frame(window)
         frame.pack(side=tk.TOP, anchor=tk.CENTER)
-
-        # Create buttons for each type in the row
+        
         for idx in range(row * 6, min((row + 1) * 6, len(x))):
             button_text = x[idx]
             button = tk.Button(frame, text=button_text, 
                                command=lambda e=button_text: button_click(e), 
                                background=TYPECOLORS[idx], 
                                foreground="black", 
-                               font=(font),
+                               font=(FONT),
                                padx="5",
                                pady="5")
             button.pack(side=tk.LEFT)
-
 
 window = tk.Tk()
 window.geometry("1100x600")
@@ -128,23 +122,22 @@ window.configure(background='gray10')
 exit_button = tk.Button(window,
                         text="Quit",
                         command=window.destroy,
-                        font=(font), background='gray12',
+                        font=(FONT), background='gray12',
                         foreground='white')
 exit_button.pack(side="bottom",
                  anchor=tk.CENTER)
-
 
 label = tk.Label(window,
                  text="Enter the number of rounds:",
                  background='gray10',
                  foreground="white",
-                 font=(font))
+                 font=(FONT))
 label.pack(anchor=tk.CENTER)
 
 entry = tk.Entry(window,
                  background='gray12', 
                  foreground="white", 
-                 font=(font))
+                 font=(FONT))
 entry.pack()
 
 start_game_button = tk.Button(window, 
@@ -152,13 +145,13 @@ start_game_button = tk.Button(window,
                               command=start_game_gui, 
                               background='gray12', 
                               foreground="white", 
-                              font=(font))
+                              font=(FONT))
 start_game_button.pack()
 
 output = tk.Label(window, text="", 
                   background='gray10', 
                   foreground="white", 
-                  font=(font))
-output.pack(anchor=tk.CENTER)  # Initialize the output label, but keep it hidden initially
+                  font=(FONT))
+output.pack(anchor=tk.CENTER)  
 
 window.mainloop()
