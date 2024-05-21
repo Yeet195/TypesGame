@@ -26,7 +26,7 @@ WEAKNESSCHART = [
     [4, 3, 0],  # rock
     [3, 7, 0],  # bug
     [2, 1, 1],  # ghost
-    [3, 3, 0],  # steel
+    [3, 4, 0],  # steel
     [4, 4, 0],  # fire
     [3, 3, 0],  # water
     [3, 7, 0],  # grass
@@ -57,3 +57,5 @@ TYPECOLORS = ['#A8A77A', # normal
               '#D685AD'] # fairy
 
 FONT = "Fixedsys", 20
+BUTTON_BG = "#8178c7"
+buttons = {}
