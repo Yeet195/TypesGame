@@ -1,0 +1,2 @@
+pokebase==1.4.1
+pillow==10.3.0
